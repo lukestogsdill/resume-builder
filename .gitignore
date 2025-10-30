@@ -1,0 +1,16 @@
+# Claude Code settings
+.claude/
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binaries
+*.test
+
+experience.md
+
+# Go workspace file
+go.work
