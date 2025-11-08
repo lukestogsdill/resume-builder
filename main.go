@@ -64,7 +64,7 @@ func getMaroto() core.Maroto {
 	mrt := maroto.New(cfg)
 
 	// Header with name and title
-	mrt.AddRows(text.NewRow(15, "John Doe", props.Text{
+	mrt.AddRows(text.NewRow(15, "Luke Stogsdill", props.Text{
 		Top:   3,
 		Style: fontstyle.Bold,
 		Size:  20,
@@ -80,7 +80,7 @@ func getMaroto() core.Maroto {
 			Top: 1,
 			Left: 10,
 		}),
-		text.NewCol(3, "123 Main Street, City, ST 12345", props.Text{
+		text.NewCol(3, "Houston, TX 77064", props.Text{
 			Size:  10,
 			Align: align.Left,
 			Top:   1,
@@ -91,7 +91,7 @@ func getMaroto() core.Maroto {
 			Top: 1,
 			Left: 10,
 		}),
-		text.NewCol(3, "+1 (555) 123-4567", props.Text{
+		text.NewCol(3, "(832) 392-2613", props.Text{
 			Size:  10,
 			Align: align.Left,
 			Top:   1,
@@ -102,7 +102,7 @@ func getMaroto() core.Maroto {
 			Top: 1,
 			Left: 10,
 		}),
-		text.NewCol(3, "john.doe@email.com", props.Text{
+		text.NewCol(3, "lukestogsdill@gmail.com", props.Text{
 			Size:  10,
 			Align: align.Left,
 			Top:   1,
@@ -121,6 +121,7 @@ func getMaroto() core.Maroto {
 			Top:   1,
 			Hyperlink: &[]string{"https://lustogs.com"}[0],
 			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+			Style: fontstyle.Italic,
 		}),
 		marotoimg.NewFromFileCol(1, "icons-png/linkedin.png", props.Rect{
 			Center:  false,
@@ -134,6 +135,7 @@ func getMaroto() core.Maroto {
 			Top:   1,
 			Hyperlink: &[]string{"https://linkedin.com/in/luke-stogsdill"}[0],
 			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+			Style: fontstyle.Italic,
 		}),
 		marotoimg.NewFromFileCol(1, "icons-png/github.png", props.Rect{
 			Center:  false,
@@ -147,14 +149,15 @@ func getMaroto() core.Maroto {
 			Top:   1,
 			Hyperlink: &[]string{"https://github.com/lukestogsdill"}[0],
 			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+			Style: fontstyle.Italic,
 		}),
 	)
 
 	// Separator line
 	mrt.AddRow(.25, col.New(1)).WithStyle(&props.Cell{BackgroundColor: getPrimaryColor()})
 
-	// Software Engineer title
-	mrt.AddRows(text.NewRow(10, "Software Engineer", props.Text{
+	// Full Stack Developer title
+	mrt.AddRows(text.NewRow(10, "Full Stack Developer", props.Text{
 		Top:    3,
 		Style:  fontstyle.Bold,
 		Size:   14,
@@ -162,12 +165,15 @@ func getMaroto() core.Maroto {
 		Family: "dejavu",
 	}))
 
-	mrt.AddRows(text.NewRow(15, "Experienced software engineer with 5+ years developing web applications and APIs. Proficient in Go, Python, and JavaScript with expertise in cloud architecture and DevOps practices.", props.Text{
+	mrt.AddRows(text.NewRow(15, "Full Stack Developer with 2+ years of experience building scalable web applications and modern software solutions. Proven expertise in React, Next.js, Svelte, Node.js, and cutting-edge technologies like Convex and TanStack Query. Co-founded a successful web design agency, delivering high-performance websites with 98-100/100 PageSpeed scores.", props.Text{
 		Top:    2,
 		Size:   10,
 		Align:  align.Left,
 		Family: "dejavu-light",
 	}))
+
+	// Add spacing after summary
+	mrt.AddRow(5, col.New(1))
 
 	// Technical Skills
 	mrt.AddRow(10,
@@ -189,49 +195,49 @@ func getMaroto() core.Maroto {
 	// Technical Skills underline
 	mrt.AddRow(.25, col.New(1)).WithStyle(&props.Cell{BackgroundColor: getPrimaryColor()})
 
-	mrt.AddRow(8,
-		text.NewCol(3, "Languages:", props.Text{
+	mrt.AddRow(5,
+		text.NewCol(3, "Frontend:", props.Text{
 			Size:  10,
 			Style: fontstyle.Bold,
 			Align: align.Left,
 		}),
-		text.NewCol(9, "Go, Python, JavaScript, TypeScript, Java", props.Text{
+		text.NewCol(9, "React, Next.js, Svelte5, TanStack Query, TypeScript", props.Text{
 			Size:  10,
 			Align: align.Left,
 		}),
 	)
 
-	mrt.AddRow(8,
-		text.NewCol(3, "Frameworks:", props.Text{
+	mrt.AddRow(5,
+		text.NewCol(3, "Backend:", props.Text{
 			Size:  10,
 			Style: fontstyle.Bold,
 			Align: align.Left,
 		}),
-		text.NewCol(9, "React, Node.js, Express, Gin, Django", props.Text{
+		text.NewCol(9, "Node.js, Golang, Python, C++, ORPC, Convex", props.Text{
 			Size:  10,
 			Align: align.Left,
 		}),
 	)
 
-	mrt.AddRow(8,
+	mrt.AddRow(5,
 		text.NewCol(3, "Databases:", props.Text{
 			Size:  10,
 			Style: fontstyle.Bold,
 			Align: align.Left,
 		}),
-		text.NewCol(9, "PostgreSQL, MongoDB, Redis", props.Text{
+		text.NewCol(9, "MongoDB, PostgreSQL, MySQL, SveltiaCMS", props.Text{
 			Size:  10,
 			Align: align.Left,
 		}),
 	)
 
-	mrt.AddRow(8,
-		text.NewCol(3, "Tools:", props.Text{
+	mrt.AddRow(5,
+		text.NewCol(3, "DevOps:", props.Text{
 			Size:  10,
 			Style: fontstyle.Bold,
 			Align: align.Left,
 		}),
-		text.NewCol(9, "Docker, Kubernetes, AWS, Git, CI/CD", props.Text{
+		text.NewCol(9, "Docker, CI/CD, Cloudflare, Hetzner, Git", props.Text{
 			Size:  10,
 			Align: align.Left,
 		}),
@@ -259,71 +265,184 @@ func getMaroto() core.Maroto {
 
 	// Job 1
 	mrt.AddRow(8,
-		text.NewCol(8, "Senior Software Engineer", props.Text{
+		text.NewCol(8, "Co-founder - Lobby Media Web Design", props.Text{
 			Size:  11,
-			Style: fontstyle.Bold,
+			Style: fontstyle.BoldItalic,
 			Align: align.Left,
+			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+			Hyperlink: &[]string{"https://lobby.media"}[0],
 		}),
-		text.NewCol(4, "2021 - Present", props.Text{
+		text.NewCol(4, "June 2024 - Current", props.Text{
 			Size:  10,
 			Align: align.Right,
 		}),
 	)
 
-	mrt.AddRows(text.NewRow(6, "TechCorp Inc. - San Francisco, CA", props.Text{
-		Size:  10,
-		Style: fontstyle.Italic,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "• Led development of microservices architecture serving 1M+ users", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Co-founded web design agency delivering high-performance websites for small businesses", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Improved API performance by 40% through optimization and caching", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Led full-cycle development using Svelte5, Next.js, and headless CMS (SveltiaCMS)", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Mentored 3 junior developers and conducted code reviews", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Achieved 98-100/100 Google PageSpeed scores through optimized development practices", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
+
+	// mrt.AddRows(text.NewRow(6, "• Client portfolio: Vascular and Wound, Landscape, Law", props.Text{
+	// 	Size:  9,
+	// 	Align: align.Left,
+	// 	Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+	// 	Style: fontstyle.Italic,
+	// 	Hyperlink: &[]string{"https://vascularandwound-com.pages.dev"}[0],
+	// }))
+
+	// mrt.AddRow(6,
+	// 	text.NewCol(2, "", props.Text{}),
+	// 	text.NewCol(3, "Vascular and Wound", props.Text{
+	// 		Size:  9,
+	// 		Align: align.Left,
+	// 		Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+	// 		Style: fontstyle.Italic,
+	// 		Hyperlink: &[]string{"https://vascularandwound-com.pages.dev"}[0],
+	// 	}),
+	// 	text.NewCol(2, "Landscape", props.Text{
+	// 		Size:  9,
+	// 		Align: align.Left,
+	// 		Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+	// 		Style: fontstyle.Italic,
+	// 		Hyperlink: &[]string{"https://landscape.lobby.media"}[0],
+	// 	}),
+	// 	text.NewCol(2, "Law", props.Text{
+	// 		Size:  9,
+	// 		Align: align.Left,
+	// 		Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+	// 		Style: fontstyle.Italic,
+	// 		Hyperlink: &[]string{"https://legal.lobby.media"}[0],
+	// 	}),
+	// 	text.NewCol(3, "", props.Text{}),
+	// )
 
 	// Job 2
 	mrt.AddRow(8,
-		text.NewCol(8, "Software Engineer", props.Text{
+		text.NewCol(8, "Freelance Software Consultant", props.Text{
 			Size:  11,
 			Style: fontstyle.Bold,
 			Align: align.Left,
 		}),
-		text.NewCol(4, "2019 - 2021", props.Text{
+		text.NewCol(4, "July 2023 - June 2024", props.Text{
 			Size:  10,
 			Align: align.Right,
 		}),
 	)
 
-	mrt.AddRows(text.NewRow(6, "StartupXYZ - Austin, TX", props.Text{
+	mrt.AddRows(text.NewRow(6, "IoT Alert Management System (TruVolt)", props.Text{
 		Size:  10,
 		Style: fontstyle.Italic,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Built full-stack web applications using React and Node.js", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Designed full-stack IoT solution with Next.js frontend and Golang microservices", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Implemented automated testing reducing bugs by 60%", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Implemented MongoDB database with custom CI/CD pipeline using Docker on Hetzner", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Collaborated with design team to create responsive user interfaces", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Built scalable architecture for real-time IoT device monitoring and alert distribution", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
+
+	// Projects
+	mrt.AddRow(10,
+		marotoimg.NewFromFileCol(0, "icons-png/layers.png", props.Rect{
+			Center:  false,
+			Percent: 80,
+			Left: 0,
+		}),
+		text.NewCol(12, "PROJECTS", props.Text{
+			Top:   3,
+			Style: fontstyle.Bold,
+			Size:  12,
+			Align: align.Left,
+			Color: getPrimaryColor(),
+			Left:  10,
+		}),
+	)
+
+	// Projects underline
+	mrt.AddRow(.25, col.New(1)).WithStyle(&props.Cell{BackgroundColor: getPrimaryColor()})
+
+	// Project 1 - Sibyl
+	mrt.AddRow(8,
+		text.NewCol(8, "Sibyl - Daily Morality Quiz", props.Text{
+			Size:  11,
+			Style: fontstyle.BoldItalic,
+			Align: align.Left,
+			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+			Hyperlink: &[]string{"https://sibyl.it.com"}[0],
+		}),
+		text.NewCol(4, "React, Convex, ORPC", props.Text{
+			Size:  10,
+			Align: align.Right,
+			Style: fontstyle.Italic,
+		}),
+	)
+
+
+	mrt.AddRows(text.NewRow(6, "• Built full-stack web app with React and TanStack Query for real-time data sync", props.Text{
+		Size:  9,
+		Align: align.Left,
+	}))
+
+	mrt.AddRows(text.NewRow(6, "• Leveraged Convex for serverless backend with automatic API generation", props.Text{
+		Size:  9,
+		Align: align.Left,
+	}))
+
+	mrt.AddRows(text.NewRow(6, "• Implemented AI-powered analysis engine that processes aggregate user data for personalized insights", props.Text{
+		Size:  9,
+		Align: align.Left,
+	}))
+
+	// Project 2 - AI Content Creation
+	mrt.AddRow(8,
+		text.NewCol(8, "AI Content Creation Suite", props.Text{
+			Size:  11,
+			Style: fontstyle.Bold,
+			Align: align.Left,
+		}),
+		text.NewCol(4, "React, Python, C++", props.Text{
+			Size:  10,
+			Align: align.Right,
+			Style: fontstyle.Italic,
+		}),
+	)
+
+	mrt.AddRows(text.NewRow(6, "• Engineered React web client for AI-assisted text generation and video processing", props.Text{
+		Size:  9,
+		Align: align.Left,
+	}))
+
+	mrt.AddRows(text.NewRow(6, "• Built Python backend API for advanced audio/video processing and transcription", props.Text{
+		Size:  9,
+		Align: align.Left,
+	}))
+
+	mrt.AddRows(text.NewRow(6, "• Developed C++ renderer with Live2D Cubism SDK for high-quality animations", props.Text{
+		Size:  9,
+		Align: align.Left,
+	}))
+
+	
 
 	// Education
 	mrt.AddRow(10,
@@ -346,22 +465,18 @@ func getMaroto() core.Maroto {
 	mrt.AddRow(.25, col.New(1)).WithStyle(&props.Cell{BackgroundColor: getPrimaryColor()})
 
 	mrt.AddRow(8,
-		text.NewCol(8, "Bachelor of Science in Computer Science", props.Text{
+		text.NewCol(8, "Coding Temple - Software Engineering", props.Text{
 			Size:  11,
-			Style: fontstyle.Bold,
+			Style: fontstyle.BoldItalic,
 			Align: align.Left,
+			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+			Hyperlink: &[]string{"https://www.credly.com/badges/2cb16330-a5d6-41b4-8cda-a1e177287f35/public_url"}[0],
 		}),
-		text.NewCol(4, "2015 - 2019", props.Text{
+		text.NewCol(4, "April 2023", props.Text{
 			Size:  10,
 			Align: align.Right,
 		}),
 	)
-
-	mrt.AddRows(text.NewRow(6, "University of California, Berkeley", props.Text{
-		Size:  10,
-		Style: fontstyle.Italic,
-		Align: align.Left,
-	}))
 
 	return mrt
 }

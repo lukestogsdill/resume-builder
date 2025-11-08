@@ -7,10 +7,5 @@
 *.so
 *.dylib
 
-# Test binaries
-*.test
-
-experience.md
-
 # Go workspace file
 go.work
