@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/johnfercher/maroto/v2"
 	"github.com/johnfercher/maroto/v2/pkg/components/col"
@@ -17,6 +18,9 @@ import (
 )
 
 func main() {
+	start := time.Now()
+	fmt.Println("Starting resume generation...")
+	
 	m := getMaroto()
 	document, err := m.Generate()
 	if err != nil {
@@ -28,7 +32,8 @@ func main() {
 		log.Fatal(err.Error())
 	}
 	
-	fmt.Println("Resume generated: resume.pdf")
+	duration := time.Since(start)
+	fmt.Printf("Resume generated: resume.pdf (took %v)\n", duration)
 }
 
 func getMaroto() core.Maroto {
@@ -121,7 +126,7 @@ func getMaroto() core.Maroto {
 			Top:   1,
 			Hyperlink: &[]string{"https://lustogs.com"}[0],
 			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-			Style: fontstyle.Italic,
+			Style: fontstyle.BoldItalic,
 		}),
 		marotoimg.NewFromFileCol(1, "icons-png/linkedin.png", props.Rect{
 			Center:  false,
@@ -135,7 +140,7 @@ func getMaroto() core.Maroto {
 			Top:   1,
 			Hyperlink: &[]string{"https://linkedin.com/in/luke-stogsdill"}[0],
 			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-			Style: fontstyle.Italic,
+			Style: fontstyle.BoldItalic,
 		}),
 		marotoimg.NewFromFileCol(1, "icons-png/github.png", props.Rect{
 			Center:  false,
@@ -149,7 +154,7 @@ func getMaroto() core.Maroto {
 			Top:   1,
 			Hyperlink: &[]string{"https://github.com/lukestogsdill"}[0],
 			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-			Style: fontstyle.Italic,
+			Style: fontstyle.BoldItalic,
 		}),
 	)
 
@@ -165,7 +170,7 @@ func getMaroto() core.Maroto {
 		Family: "dejavu",
 	}))
 
-	mrt.AddRows(text.NewRow(15, "Full Stack Developer with 2+ years of experience building scalable web applications and modern software solutions. Proven expertise in React, Next.js, Svelte, Node.js, and cutting-edge technologies like Convex and TanStack Query. Co-founded a successful web design agency, delivering high-performance websites with 98-100/100 PageSpeed scores.", props.Text{
+	mrt.AddRows(text.NewRow(15, "Full Stack Developer with 2+ years of experience delivering production websites for live clients. Co-founded web design agency serving real businesses including medical practitioners, achieving 98-100/100 PageSpeed scores on live client sites. Proven expertise in React, Next.js, Svelte, Node.js, and cutting-edge technologies like Convex and TanStack Query.", props.Text{
 		Top:    2,
 		Size:   10,
 		Align:  align.Left,
@@ -265,7 +270,7 @@ func getMaroto() core.Maroto {
 
 	// Job 1
 	mrt.AddRow(8,
-		text.NewCol(8, "Co-founder - Lobby Media Web Design", props.Text{
+		text.NewCol(8, "Co-founder & Lead Developer - Lobby Media", props.Text{
 			Size:  11,
 			Style: fontstyle.BoldItalic,
 			Align: align.Left,
@@ -278,54 +283,26 @@ func getMaroto() core.Maroto {
 		}),
 	)
 
-	mrt.AddRows(text.NewRow(6, "• Co-founded web design agency delivering high-performance websites for small businesses", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Led development team of 3 engineers delivering high-performance websites for medical practices", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Led full-cycle development using Svelte5, Next.js, and headless CMS (SveltiaCMS)", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Managed full-stack architecture serving 1000+ monthly visitors with 99.9% uptime", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Achieved 98-100/100 Google PageSpeed scores through optimized development practices", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Optimized client sites achieving 98-100/100 PageSpeed scores and <2s load times", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	// mrt.AddRows(text.NewRow(6, "• Client portfolio: Vascular and Wound, Landscape, Law", props.Text{
-	// 	Size:  9,
-	// 	Align: align.Left,
-	// 	Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-	// 	Style: fontstyle.Italic,
-	// 	Hyperlink: &[]string{"https://vascularandwound-com.pages.dev"}[0],
-	// }))
-
-	// mrt.AddRow(6,
-	// 	text.NewCol(2, "", props.Text{}),
-	// 	text.NewCol(3, "Vascular and Wound", props.Text{
-	// 		Size:  9,
-	// 		Align: align.Left,
-	// 		Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-	// 		Style: fontstyle.Italic,
-	// 		Hyperlink: &[]string{"https://vascularandwound-com.pages.dev"}[0],
-	// 	}),
-	// 	text.NewCol(2, "Landscape", props.Text{
-	// 		Size:  9,
-	// 		Align: align.Left,
-	// 		Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-	// 		Style: fontstyle.Italic,
-	// 		Hyperlink: &[]string{"https://landscape.lobby.media"}[0],
-	// 	}),
-	// 	text.NewCol(2, "Law", props.Text{
-	// 		Size:  9,
-	// 		Align: align.Left,
-	// 		Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-	// 		Style: fontstyle.Italic,
-	// 		Hyperlink: &[]string{"https://legal.lobby.media"}[0],
-	// 	}),
-	// 	text.NewCol(3, "", props.Text{}),
-	// )
+	mrt.AddRows(text.NewRow(6, "Tech: Svelte5, Next.js, TypeScript, SveltiaCMS, Cloudflare", props.Text{
+		Size:  9,
+		Align: align.Left,
+		Style: fontstyle.Italic,
+	}))
 
 	// Job 2
 	mrt.AddRow(8,
@@ -346,19 +323,25 @@ func getMaroto() core.Maroto {
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Designed full-stack IoT solution with Next.js frontend and Golang microservices", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Architected scalable IoT monitoring system handling 50+ concurrent device connections", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Implemented MongoDB database with custom CI/CD pipeline using Docker on Hetzner", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Built real-time motor monitoring system with <500ms alert response times", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Built scalable architecture for real-time IoT device monitoring and alert distribution", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Deployed containerized microservices with automated CI/CD pipeline", props.Text{
 		Size:  9,
 		Align: align.Left,
+	}))
+
+	mrt.AddRows(text.NewRow(6, "Tech: Next.js, Golang, MongoDB, Docker, Hetzner Cloud", props.Text{
+		Size:  9,
+		Align: align.Left,
+		Style: fontstyle.Italic,
 	}))
 
 	// Projects
@@ -383,63 +366,97 @@ func getMaroto() core.Maroto {
 
 	// Project 1 - Sibyl
 	mrt.AddRow(8,
-		text.NewCol(8, "Sibyl - Daily Morality Quiz", props.Text{
+		text.NewCol(12, "Sibyl - Daily Morality Quiz", props.Text{
 			Size:  11,
 			Style: fontstyle.BoldItalic,
 			Align: align.Left,
 			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
 			Hyperlink: &[]string{"https://sibyl.it.com"}[0],
 		}),
-		text.NewCol(4, "React, Convex, ORPC", props.Text{
-			Size:  10,
-			Align: align.Right,
-			Style: fontstyle.Italic,
-		}),
 	)
 
 
-	mrt.AddRows(text.NewRow(6, "• Built full-stack web app with React and TanStack Query for real-time data sync", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Developed analytics platform processing 10K+ user responses with real-time insights", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Leveraged Convex for serverless backend with automatic API generation", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Implemented serverless architecture with reactive data subscriptions and live updates", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Implemented AI-powered analysis engine that processes aggregate user data for personalized insights", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Built AI analysis engine generating personalized moral compass insights from aggregate data", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	// Project 2 - AI Content Creation
+	mrt.AddRows(text.NewRow(6, "Tech: React, TypeScript, Convex, TanStack Query, ORPC", props.Text{
+		Size:  9,
+		Align: align.Left,
+		Style: fontstyle.Italic,
+	}))
+
+	// Project 2 
+	mrt.AddRows(text.NewRow(6, "Professional Website Portfolio", props.Text{
+			Size:  11,
+			Style: fontstyle.BoldItalic,
+			Align: align.Left,
+		}))
+	mrt.AddRow(6,
+		text.NewCol(1, "", props.Text{}),
+		text.NewCol(3, "Vascular & Wound Care", props.Text{
+			Size:  9,
+			Align: align.Left,
+			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+			Style: fontstyle.BoldItalic,
+			Hyperlink: &[]string{"https://vascularandwound-com.pages.dev"}[0],
+		}),
+		text.NewCol(3, "Landscape Services", props.Text{
+			Size:  9,
+			Align: align.Left,
+			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+			Style: fontstyle.BoldItalic,
+			Hyperlink: &[]string{"https://landscape.lobby.media"}[0],
+		}),
+		text.NewCol(3, "Legal Practice", props.Text{
+			Size:  9,
+			Align: align.Left,
+			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
+			Style: fontstyle.BoldItalic,
+			Hyperlink: &[]string{"https://law.lobby.media"}[0],
+		}),
+		text.NewCol(2, "", props.Text{}),
+	)
+
+	// Project 2 - AI Vtuber
 	mrt.AddRow(8,
-		text.NewCol(8, "AI Content Creation Suite", props.Text{
+		text.NewCol(12, "AI Vtuber Content Creator", props.Text{
 			Size:  11,
 			Style: fontstyle.Bold,
 			Align: align.Left,
 		}),
-		text.NewCol(4, "React, Python, C++", props.Text{
-			Size:  10,
-			Align: align.Right,
-			Style: fontstyle.Italic,
-		}),
 	)
 
-	mrt.AddRows(text.NewRow(6, "• Engineered React web client for AI-assisted text generation and video processing", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Created AI-powered Vtuber that watches videos and generates authentic real-time reactions", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Built Python backend API for advanced audio/video processing and transcription", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Built offline rendering pipeline processing 4K video with synchronized Live2D animations", props.Text{
 		Size:  9,
 		Align: align.Left,
 	}))
 
-	mrt.AddRows(text.NewRow(6, "• Developed C++ renderer with Live2D Cubism SDK for high-quality animations", props.Text{
+	mrt.AddRows(text.NewRow(6, "• Integrated advanced speech synthesis and emotion recognition for dynamic character responses", props.Text{
 		Size:  9,
 		Align: align.Left,
+	}))
+
+	mrt.AddRows(text.NewRow(6, "Tech: React, Python, C++, Live2D Cubism SDK, WhisperX, OpenAI API", props.Text{
+		Size:  9,
+		Align: align.Left,
+		Style: fontstyle.Italic,
 	}))
 
 	

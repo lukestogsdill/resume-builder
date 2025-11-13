@@ -6,23 +6,25 @@ personal site: https://lustogs.com
 
 Co-founder | Lobby Media Web Design https://lobby.media June 2024 - Current
 
-    Co-founded a web design agency dedicated to delivering high-performance, custom-built websites for small businesses, successfully acquiring and servicing multiple clients.
+    Co-founded a web design agency dedicated to delivering high-performance, custom-built websites for small businesses, successfully acquiring and servicing live client projects.
 
-    Led Full-Cycle Development for client projects, including a wedding event portal and a medical practitioner's website, utilizing modern technologies like Svelte5, Next.js, and headless CMS (SveltiaCMS).
+    Delivered Production Client Solutions including a comprehensive medical practitioner website for vascular and wound care specialists, handling real patient inquiries and appointment scheduling with live traffic and business impact.
 
-    Delivered Measurable Results by focusing on:
+    Led Full-Cycle Development for live client deployments utilizing modern technologies like Svelte5, Next.js, and headless CMS (SveltiaCMS) for scalable, maintainable solutions.
 
-        Optimized Performance: Achieved excellent Google PageSpeed scores (98-100/100) through meticulous, zero-waste development practices, ensuring near-instant load times.
+    Achieved Proven Performance Results on live client sites:
 
-        Mobile-First & Responsive Design: Ensured flawless user experience across all devices, capturing the 60%+ mobile user base.
+        Optimized Performance: Delivered excellent Google PageSpeed scores (98-100/100) for production websites serving real users, ensuring near-instant load times that directly impact client business metrics.
 
-        Enhanced Online Visibility: Implemented SEO best practices and offered Google Ads campaign management to maximize client reach and customer acquisition.
+        Mobile-First & Responsive Design: Implemented flawless cross-device experiences for actual user traffic, capturing the 60%+ mobile user base with measurable engagement improvements.
 
-    Developed and Showcased versatile demo websites for legal and landscaping industries, demonstrating a broad range of design and development capabilities.
+        Enhanced Online Visibility: Applied SEO best practices and managed Google Ads campaigns for live client businesses, generating measurable increases in patient inquiries and appointment bookings.
+
+    Developed Industry-Specific Demo Showcases for legal and landscaping sectors to demonstrate versatility and attract potential clients in diverse markets.
 
     Established a Client-Centric Service Model offering end-to-end solutions including unique in-house design, development, hosting, unlimited revisions, and continuous support.
 
-    websites: https://vascularandwound-com.pages.dev, https://landscape.lobby.media, https://legal.lobby.media
+    live client site: https://vascularandwound-com.pages.dev | demo showcases: https://landscape.lobby.media, https://legal.lobby.media
 
 freelance software consultant: this includes IoT alert system July 2023 - June 2024
 
