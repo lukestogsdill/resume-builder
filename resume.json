@@ -1,0 +1,98 @@
+{
+  "name": "luke stogsdill",
+  "title": "full stack developer",
+  "contact": {
+    "location": "houston, tx 77064",
+    "phone": "(832) 392-2613",
+    "email": "lukestogsdill@gmail.com",
+    "website": {
+      "text": "lustogs.com",
+      "url": "https://lustogs.com"
+    },
+    "linkedin": {
+      "text": "luke-stogsdill",
+      "url": "https://linkedin.com/in/luke-stogsdill"
+    },
+    "github": {
+      "text": "lukestogsdill",
+      "url": "https://github.com/lukestogsdill"
+    }
+  },
+  "summary": "full stack developer focused on high-performance web apps and practical backend systems. experienced taking rough concepts to functioning products with clean ux, fast load times, and maintainable architecture.",
+  "skills": [
+    {
+      "category": "frontend",
+      "items": "react, next.js, svelte5, tanstack query, typescript"
+    },
+    {
+      "category": "backend",
+      "items": "node.js, golang, python, c++, orpc, convex"
+    },
+    {
+      "category": "databases",
+      "items": "mongodb, postgresql, mysql, sveltiacms"
+    },
+    {
+      "category": "devops",
+      "items": "docker, ci/cd, cloudflare, hetzner, git"
+    }
+  ],
+  "experience": [
+    {
+      "company": "lobby media | web design",
+      "title": "co-founder",
+      "url": "https://lobby.media",
+      "dates": "june 2024 - current",
+      "achievements": [
+        "delivered lightweight, seo-optimized static sites achieving perfect pagespeed scores",
+        "upgraded client sites with faster load times, modern ui, and cleaner information flow",
+        "implemented cms editing so clients can manage content without developer involvement",
+        "shipped production websites and polished demos across medical, service, and event niches"
+      ],
+      "tech": "svelte5, next.js, typescript, sveltiacms, cloudflare"
+    },
+    {
+      "company": "freelance software consultant",
+      "title": "contract developer",
+      "url": "",
+      "dates": "december 2023 - june 2024",
+      "achievements": [
+        "engineered a microservice for iot devices that processes and updates alert states as new events enter postgresql",
+        "implemented a postgresql listen/notify workflow with caching to reduce repeated queries",
+        "created an operator dashboard for reviewing alert history and monitoring device status from a single interface"
+      ],
+      "tech": "next.js, golang, postgresql, mongodb, docker, hetzner cloud"
+    }
+  ],
+  "projects": [
+    {
+      "name": "sibyl - daily morality quiz",
+      "url": "https://sibyl.it.com",
+      "achievements": [
+        "developed a daily quiz platform with smooth response tracking and user comparison features",
+        "added ai-driven insight generation to highlight behavioral patterns",
+        "implemented the full frontend, backend, and reactive data flow"
+      ],
+      "tech": "react, typescript, convex, tanstack query, orpc"
+    },
+    {
+        "name": "ai vtuber content creator",
+        "url": "https://youtu.be/zuwlena5c_4",
+        "achievements": [
+            "processed video frames and whisperx transcripts to extract context and timing",
+            "generated llm-driven character reactions with synthesized speech synced to a live2d model",
+            "automated final video production by overlaying the character, audio, and subtitles onto the source footage"
+          ],
+        "tech": "react, python, c++, live2d cubism sdk, whisperx, openai api"
+    }
+  ],
+  "education": [
+    {
+      "school": "coding temple - software engineering",
+      "degree": "",
+      "url": "https://www.credly.com/badges/2cb16330-a5d6-41b4-8cda-a1e177287f35/public_url",
+      "date": "april 2023"
+    }
+  ]
+}
+

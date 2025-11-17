@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
+	"os"
 	"time"
 
 	"github.com/johnfercher/maroto/v2"
@@ -17,11 +19,83 @@ import (
 	"github.com/johnfercher/maroto/v2/pkg/repository"
 )
 
+type Link struct {
+	Text string `json:"text"`
+	URL  string `json:"url"`
+}
+
+type Contact struct {
+	Location string `json:"location"`
+	Phone    string `json:"phone"`
+	Email    string `json:"email"`
+	Website  Link   `json:"website"`
+	LinkedIn Link   `json:"linkedin"`
+	GitHub   Link   `json:"github"`
+}
+
+type Skill struct {
+	Category string `json:"category"`
+	Items    string `json:"items"`
+}
+
+type Experience struct {
+	Company      string   `json:"company"`
+	Title        string   `json:"title"`
+	URL          string   `json:"url"`
+	Dates        string   `json:"dates"`
+	Achievements []string `json:"achievements"`
+	Tech         string   `json:"tech"`
+}
+
+type Project struct {
+	Name         string   `json:"name"`
+	URL          string   `json:"url"`
+	Achievements []string `json:"achievements"`
+	Tech         string   `json:"tech"`
+}
+
+type Education struct {
+	School string `json:"school"`
+	Degree string `json:"degree"`
+	URL    string `json:"url"`
+	Date   string `json:"date"`
+}
+
+type Resume struct {
+	Name       string       `json:"name"`
+	Title      string       `json:"title"`
+	Contact    Contact      `json:"contact"`
+	Summary    string       `json:"summary"`
+	Skills     []Skill      `json:"skills"`
+	Experience []Experience `json:"experience"`
+	Projects   []Project    `json:"projects"`
+	Education  []Education  `json:"education"`
+}
+
+func loadResume(filename string) (*Resume, error) {
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read resume file: %w", err)
+	}
+
+	var resume Resume
+	if err := json.Unmarshal(data, &resume); err != nil {
+		return nil, fmt.Errorf("failed to parse resume JSON: %w", err)
+	}
+
+	return &resume, nil
+}
+
 func main() {
 	start := time.Now()
 	fmt.Println("Starting resume generation...")
-	
-	m := getMaroto()
+
+	resume, err := loadResume("resume.json")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	m := getMaroto(resume)
 	document, err := m.Generate()
 	if err != nil {
 		log.Fatal(err.Error())
@@ -31,12 +105,12 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	
+
 	duration := time.Since(start)
-	fmt.Printf("Resume generated: resume.pdf (took %v)\n", duration)
+	fmt.Printf("Resume generated successfully in %v\n", duration)
 }
 
-func getMaroto() core.Maroto {
+func getMaroto(resume *Resume) core.Maroto {
 	// Load custom fonts
 	customFonts, err := repository.New().
 		AddUTF8Font("dejavu", fontstyle.Normal, "fonts/DejaVuSans.ttf").
@@ -51,7 +125,7 @@ func getMaroto() core.Maroto {
 		cfg := config.NewBuilder().
 			WithPageNumber().
 			WithLeftMargin(10).
-			WithTopMargin(15).
+			WithTopMargin(10).
 			WithRightMargin(10).
 			Build()
 		return maroto.New(cfg)
@@ -62,14 +136,14 @@ func getMaroto() core.Maroto {
 		WithDefaultFont(&props.Font{Family: "dejavu"}).
 		WithPageNumber().
 		WithLeftMargin(10).
-		WithTopMargin(15).
+		WithTopMargin(10).
 		WithRightMargin(10).
 		Build()
 
 	mrt := maroto.New(cfg)
 
 	// Header with name and title
-	mrt.AddRows(text.NewRow(15, "Luke Stogsdill", props.Text{
+	mrt.AddRows(text.NewRow(15, resume.Name, props.Text{
 		Top:   3,
 		Style: fontstyle.Bold,
 		Size:  20,
@@ -85,7 +159,7 @@ func getMaroto() core.Maroto {
 			Top: 1,
 			Left: 10,
 		}),
-		text.NewCol(3, "Houston, TX 77064", props.Text{
+		text.NewCol(3, resume.Contact.Location, props.Text{
 			Size:  10,
 			Align: align.Left,
 			Top:   1,
@@ -96,7 +170,7 @@ func getMaroto() core.Maroto {
 			Top: 1,
 			Left: 10,
 		}),
-		text.NewCol(3, "(832) 392-2613", props.Text{
+		text.NewCol(3, resume.Contact.Phone, props.Text{
 			Size:  10,
 			Align: align.Left,
 			Top:   1,
@@ -107,7 +181,7 @@ func getMaroto() core.Maroto {
 			Top: 1,
 			Left: 10,
 		}),
-		text.NewCol(3, "lukestogsdill@gmail.com", props.Text{
+		text.NewCol(3, resume.Contact.Email, props.Text{
 			Size:  10,
 			Align: align.Left,
 			Top:   1,
@@ -120,11 +194,11 @@ func getMaroto() core.Maroto {
 			Top: 1,
 			Left: 10,
 		}),
-		text.NewCol(3, "lustogs.com", props.Text{
+		text.NewCol(3, resume.Contact.Website.Text, props.Text{
 			Size:  10,
 			Align: align.Left,
 			Top:   1,
-			Hyperlink: &[]string{"https://lustogs.com"}[0],
+			Hyperlink: &[]string{resume.Contact.Website.URL}[0],
 			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
 			Style: fontstyle.BoldItalic,
 		}),
@@ -134,11 +208,11 @@ func getMaroto() core.Maroto {
 			Top: 1,
 			Left: 10,
 		}),
-		text.NewCol(3, "luke-stogsdill", props.Text{
+		text.NewCol(3, resume.Contact.LinkedIn.Text, props.Text{
 			Size:  10,
 			Align: align.Left,
 			Top:   1,
-			Hyperlink: &[]string{"https://linkedin.com/in/luke-stogsdill"}[0],
+			Hyperlink: &[]string{resume.Contact.LinkedIn.URL}[0],
 			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
 			Style: fontstyle.BoldItalic,
 		}),
@@ -148,11 +222,11 @@ func getMaroto() core.Maroto {
 			Top: 1,
 			Left: 10,
 		}),
-		text.NewCol(3, "lukestogsdill", props.Text{
+		text.NewCol(3, resume.Contact.GitHub.Text, props.Text{
 			Size:  10,
 			Align: align.Left,
 			Top:   1,
-			Hyperlink: &[]string{"https://github.com/lukestogsdill"}[0],
+			Hyperlink: &[]string{resume.Contact.GitHub.URL}[0],
 			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
 			Style: fontstyle.BoldItalic,
 		}),
@@ -162,7 +236,7 @@ func getMaroto() core.Maroto {
 	mrt.AddRow(.25, col.New(1)).WithStyle(&props.Cell{BackgroundColor: getPrimaryColor()})
 
 	// Full Stack Developer title
-	mrt.AddRows(text.NewRow(10, "Full Stack Developer", props.Text{
+	mrt.AddRows(text.NewRow(10, resume.Title, props.Text{
 		Top:    3,
 		Style:  fontstyle.Bold,
 		Size:   14,
@@ -170,7 +244,7 @@ func getMaroto() core.Maroto {
 		Family: "dejavu",
 	}))
 
-	mrt.AddRows(text.NewRow(15, "Full Stack Developer with 2+ years of experience delivering production websites for live clients. Co-founded web design agency serving real businesses including medical practitioners, achieving 98-100/100 PageSpeed scores on live client sites. Proven expertise in React, Next.js, Svelte, Node.js, and cutting-edge technologies like Convex and TanStack Query.", props.Text{
+	mrt.AddRows(text.NewRow(15, resume.Summary, props.Text{
 		Top:    2,
 		Size:   10,
 		Align:  align.Left,
@@ -200,53 +274,20 @@ func getMaroto() core.Maroto {
 	// Technical Skills underline
 	mrt.AddRow(.25, col.New(1)).WithStyle(&props.Cell{BackgroundColor: getPrimaryColor()})
 
-	mrt.AddRow(5,
-		text.NewCol(3, "Frontend:", props.Text{
-			Size:  10,
-			Style: fontstyle.Bold,
-			Align: align.Left,
-		}),
-		text.NewCol(9, "React, Next.js, Svelte5, TanStack Query, TypeScript", props.Text{
-			Size:  10,
-			Align: align.Left,
-		}),
-	)
-
-	mrt.AddRow(5,
-		text.NewCol(3, "Backend:", props.Text{
-			Size:  10,
-			Style: fontstyle.Bold,
-			Align: align.Left,
-		}),
-		text.NewCol(9, "Node.js, Golang, Python, C++, ORPC, Convex", props.Text{
-			Size:  10,
-			Align: align.Left,
-		}),
-	)
-
-	mrt.AddRow(5,
-		text.NewCol(3, "Databases:", props.Text{
-			Size:  10,
-			Style: fontstyle.Bold,
-			Align: align.Left,
-		}),
-		text.NewCol(9, "MongoDB, PostgreSQL, MySQL, SveltiaCMS", props.Text{
-			Size:  10,
-			Align: align.Left,
-		}),
-	)
-
-	mrt.AddRow(5,
-		text.NewCol(3, "DevOps:", props.Text{
-			Size:  10,
-			Style: fontstyle.Bold,
-			Align: align.Left,
-		}),
-		text.NewCol(9, "Docker, CI/CD, Cloudflare, Hetzner, Git", props.Text{
-			Size:  10,
-			Align: align.Left,
-		}),
-	)
+	// Add each skill category dynamically
+	for _, skill := range resume.Skills {
+		mrt.AddRow(5,
+			text.NewCol(3, skill.Category + ":", props.Text{
+				Size:  10,
+				Style: fontstyle.Bold,
+				Align: align.Left,
+			}),
+			text.NewCol(9, skill.Items, props.Text{
+				Size:  10,
+				Align: align.Left,
+			}),
+		)
+	}
 
 	// Work Experience
 	mrt.AddRow(10,
@@ -268,81 +309,53 @@ func getMaroto() core.Maroto {
 	// Work Experience underline
 	mrt.AddRow(.25, col.New(1)).WithStyle(&props.Cell{BackgroundColor: getPrimaryColor()})
 
-	// Job 1
-	mrt.AddRow(8,
-		text.NewCol(8, "Co-founder & Lead Developer - Lobby Media", props.Text{
-			Size:  11,
-			Style: fontstyle.BoldItalic,
+	// Add each job dynamically
+	for _, exp := range resume.Experience {
+		// Job title and dates
+		jobTitle := exp.Title + " - " + exp.Company
+		if exp.URL != "" {
+			mrt.AddRow(8,
+				text.NewCol(8, jobTitle, props.Text{
+					Size:      11,
+					Style:     fontstyle.BoldItalic,
+					Align:     align.Left,
+					Color:     &props.Color{Red: 0, Green: 0, Blue: 255},
+					Hyperlink: &[]string{exp.URL}[0],
+				}),
+				text.NewCol(4, exp.Dates, props.Text{
+					Size:  10,
+					Align: align.Right,
+				}),
+			)
+		} else {
+			mrt.AddRow(8,
+				text.NewCol(8, jobTitle, props.Text{
+					Size:  11,
+					Style: fontstyle.Bold,
+					Align: align.Left,
+				}),
+				text.NewCol(4, exp.Dates, props.Text{
+					Size:  10,
+					Align: align.Right,
+				}),
+			)
+		}
+
+		// Achievements
+		for _, achievement := range exp.Achievements {
+			mrt.AddRows(text.NewRow(6, "• "+achievement, props.Text{
+				Size:  9,
+				Align: align.Left,
+			}))
+		}
+
+		// Tech stack
+		mrt.AddRows(text.NewRow(6, "Tech: "+exp.Tech, props.Text{
+			Size:  9,
 			Align: align.Left,
-			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-			Hyperlink: &[]string{"https://lobby.media"}[0],
-		}),
-		text.NewCol(4, "June 2024 - Current", props.Text{
-			Size:  10,
-			Align: align.Right,
-		}),
-	)
-
-	mrt.AddRows(text.NewRow(6, "• Led development team of 3 engineers delivering high-performance websites for medical practices", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "• Managed full-stack architecture serving 1000+ monthly visitors with 99.9% uptime", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "• Optimized client sites achieving 98-100/100 PageSpeed scores and <2s load times", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "Tech: Svelte5, Next.js, TypeScript, SveltiaCMS, Cloudflare", props.Text{
-		Size:  9,
-		Align: align.Left,
-		Style: fontstyle.Italic,
-	}))
-
-	// Job 2
-	mrt.AddRow(8,
-		text.NewCol(8, "Freelance Software Consultant", props.Text{
-			Size:  11,
-			Style: fontstyle.Bold,
-			Align: align.Left,
-		}),
-		text.NewCol(4, "July 2023 - June 2024", props.Text{
-			Size:  10,
-			Align: align.Right,
-		}),
-	)
-
-	mrt.AddRows(text.NewRow(6, "IoT Alert Management System (TruVolt)", props.Text{
-		Size:  10,
-		Style: fontstyle.Italic,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "• Architected scalable IoT monitoring system handling 50+ concurrent device connections", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "• Built real-time motor monitoring system with <500ms alert response times", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "• Deployed containerized microservices with automated CI/CD pipeline", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "Tech: Next.js, Golang, MongoDB, Docker, Hetzner Cloud", props.Text{
-		Size:  9,
-		Align: align.Left,
-		Style: fontstyle.Italic,
-	}))
+			Style: fontstyle.Italic,
+		}))
+	}
 
 	// Projects
 	mrt.AddRow(10,
@@ -364,100 +377,44 @@ func getMaroto() core.Maroto {
 	// Projects underline
 	mrt.AddRow(.25, col.New(1)).WithStyle(&props.Cell{BackgroundColor: getPrimaryColor()})
 
-	// Project 1 - Sibyl
-	mrt.AddRow(8,
-		text.NewCol(12, "Sibyl - Daily Morality Quiz", props.Text{
-			Size:  11,
-			Style: fontstyle.BoldItalic,
+	// Add each project dynamically
+	for _, proj := range resume.Projects {
+		// Project name with link
+		if proj.URL != "" {
+			mrt.AddRow(8,
+				text.NewCol(12, proj.Name, props.Text{
+					Size:      11,
+					Style:     fontstyle.BoldItalic,
+					Align:     align.Left,
+					Color:     &props.Color{Red: 0, Green: 0, Blue: 255},
+					Hyperlink: &[]string{proj.URL}[0],
+				}),
+			)
+		} else {
+			mrt.AddRow(8,
+				text.NewCol(12, proj.Name, props.Text{
+					Size:  11,
+					Style: fontstyle.Bold,
+					Align: align.Left,
+				}),
+			)
+		}
+
+		// Achievements
+		for _, achievement := range proj.Achievements {
+			mrt.AddRows(text.NewRow(6, "• "+achievement, props.Text{
+				Size:  9,
+				Align: align.Left,
+			}))
+		}
+
+		// Tech stack
+		mrt.AddRows(text.NewRow(6, "Tech: "+proj.Tech, props.Text{
+			Size:  9,
 			Align: align.Left,
-			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-			Hyperlink: &[]string{"https://sibyl.it.com"}[0],
-		}),
-	)
-
-
-	mrt.AddRows(text.NewRow(6, "• Developed analytics platform processing 10K+ user responses with real-time insights", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "• Implemented serverless architecture with reactive data subscriptions and live updates", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "• Built AI analysis engine generating personalized moral compass insights from aggregate data", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "Tech: React, TypeScript, Convex, TanStack Query, ORPC", props.Text{
-		Size:  9,
-		Align: align.Left,
-		Style: fontstyle.Italic,
-	}))
-
-	// Project 2 
-	mrt.AddRows(text.NewRow(6, "Professional Website Portfolio", props.Text{
-			Size:  11,
-			Style: fontstyle.BoldItalic,
-			Align: align.Left,
+			Style: fontstyle.Italic,
 		}))
-	mrt.AddRow(6,
-		text.NewCol(1, "", props.Text{}),
-		text.NewCol(3, "Vascular & Wound Care", props.Text{
-			Size:  9,
-			Align: align.Left,
-			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-			Style: fontstyle.BoldItalic,
-			Hyperlink: &[]string{"https://vascularandwound-com.pages.dev"}[0],
-		}),
-		text.NewCol(3, "Landscape Services", props.Text{
-			Size:  9,
-			Align: align.Left,
-			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-			Style: fontstyle.BoldItalic,
-			Hyperlink: &[]string{"https://landscape.lobby.media"}[0],
-		}),
-		text.NewCol(3, "Legal Practice", props.Text{
-			Size:  9,
-			Align: align.Left,
-			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-			Style: fontstyle.BoldItalic,
-			Hyperlink: &[]string{"https://law.lobby.media"}[0],
-		}),
-		text.NewCol(2, "", props.Text{}),
-	)
-
-	// Project 2 - AI Vtuber
-	mrt.AddRow(8,
-		text.NewCol(12, "AI Vtuber Content Creator", props.Text{
-			Size:  11,
-			Style: fontstyle.Bold,
-			Align: align.Left,
-		}),
-	)
-
-	mrt.AddRows(text.NewRow(6, "• Created AI-powered Vtuber that watches videos and generates authentic real-time reactions", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "• Built offline rendering pipeline processing 4K video with synchronized Live2D animations", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "• Integrated advanced speech synthesis and emotion recognition for dynamic character responses", props.Text{
-		Size:  9,
-		Align: align.Left,
-	}))
-
-	mrt.AddRows(text.NewRow(6, "Tech: React, Python, C++, Live2D Cubism SDK, WhisperX, OpenAI API", props.Text{
-		Size:  9,
-		Align: align.Left,
-		Style: fontstyle.Italic,
-	}))
+	}
 
 	
 
@@ -481,19 +438,36 @@ func getMaroto() core.Maroto {
 	// Education underline
 	mrt.AddRow(.25, col.New(1)).WithStyle(&props.Cell{BackgroundColor: getPrimaryColor()})
 
-	mrt.AddRow(8,
-		text.NewCol(8, "Coding Temple - Software Engineering", props.Text{
-			Size:  11,
-			Style: fontstyle.BoldItalic,
-			Align: align.Left,
-			Color: &props.Color{Red: 0, Green: 0, Blue: 255},
-			Hyperlink: &[]string{"https://www.credly.com/badges/2cb16330-a5d6-41b4-8cda-a1e177287f35/public_url"}[0],
-		}),
-		text.NewCol(4, "April 2023", props.Text{
-			Size:  10,
-			Align: align.Right,
-		}),
-	)
+	// Add each education entry dynamically
+	for _, edu := range resume.Education {
+		if edu.URL != "" {
+			mrt.AddRow(8,
+				text.NewCol(8, edu.School, props.Text{
+					Size:      11,
+					Style:     fontstyle.BoldItalic,
+					Align:     align.Left,
+					Color:     &props.Color{Red: 0, Green: 0, Blue: 255},
+					Hyperlink: &[]string{edu.URL}[0],
+				}),
+				text.NewCol(4, edu.Date, props.Text{
+					Size:  10,
+					Align: align.Right,
+				}),
+			)
+		} else {
+			mrt.AddRow(8,
+				text.NewCol(8, edu.School, props.Text{
+					Size:  11,
+					Style: fontstyle.Bold,
+					Align: align.Left,
+				}),
+				text.NewCol(4, edu.Date, props.Text{
+					Size:  10,
+					Align: align.Right,
+				}),
+			)
+		}
+	}
 
 	return mrt
 }
