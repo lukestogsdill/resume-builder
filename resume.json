@@ -1,8 +1,8 @@
 {
-  "name": "luke stogsdill",
-  "title": "full stack developer",
+  "name": "Luke Stogsdill",
+  "title": "Full Stack Developer",
   "contact": {
-    "location": "houston, tx 77064",
+    "location": "Houston, TX 77064",
     "phone": "(832) 392-2613",
     "email": "lukestogsdill@gmail.com",
     "website": {
@@ -18,80 +18,80 @@
       "url": "https://github.com/lukestogsdill"
     }
   },
-  "summary": "full stack developer focused on high-performance web apps and practical backend systems. experienced taking rough concepts to functioning products with clean ux, fast load times, and maintainable architecture.",
+  "summary": "2+ Full Stack Developer focused on high-performance web apps and practical backend systems. Experienced taking rough concepts to functioning products with clean UX, fast load times, and maintainable architecture.",
   "skills": [
     {
-      "category": "frontend",
-      "items": "react, next.js, svelte5, tanstack query, typescript"
+      "category": "Frontend",
+      "items": "React, Next.js, Svelte5, TanStack Query, TypeScript"
     },
     {
-      "category": "backend",
-      "items": "node.js, golang, python, c++, orpc, convex"
+      "category": "Backend",
+      "items": "Node.js, Golang, Python, C++, oRPC, Convex"
     },
     {
-      "category": "databases",
-      "items": "mongodb, postgresql, mysql, sveltiacms"
+      "category": "Databases",
+      "items": "MongoDB, PostgreSQL, MySQL, SveltiaCS"
     },
     {
-      "category": "devops",
-      "items": "docker, ci/cd, cloudflare, hetzner, git"
+      "category": "DevOps",
+      "items": "Docker, CI/CD, Cloudflare, Hetzner, Git"
     }
   ],
   "experience": [
     {
-      "company": "lobby media | web design",
-      "title": "co-founder",
+      "company": "Lobby Media | Web Design",
+      "title": "Co-Founder",
       "url": "https://lobby.media",
-      "dates": "june 2024 - current",
+      "dates": "June 2024 - Current",
       "achievements": [
-        "delivered lightweight, seo-optimized static sites achieving perfect pagespeed scores",
-        "upgraded client sites with faster load times, modern ui, and cleaner information flow",
-        "implemented cms editing so clients can manage content without developer involvement",
-        "shipped production websites and polished demos across medical, service, and event niches"
+        "Delivered lightweight, SEO-optimized static sites achieving perfect PageSpeed scores",
+        "Upgraded client sites with faster load times, modern UI, and cleaner information flow",
+        "Implemented CMS editing so clients can manage content without developer involvement",
+        "Shipped production websites and polished demos across medical, service, and event niches"
       ],
-      "tech": "svelte5, next.js, typescript, sveltiacms, cloudflare"
+      "tech": "Svelte5, Next.js, TypeScript, SveltiaCS, Cloudflare"
     },
     {
-      "company": "freelance software consultant",
-      "title": "contract developer",
+      "company": "Freelance Software Consultant",
+      "title": "Contract Developer",
       "url": "",
-      "dates": "december 2023 - june 2024",
+      "dates": "December 2023 - June 2024",
       "achievements": [
-        "engineered a microservice for iot devices that processes and updates alert states as new events enter postgresql",
-        "implemented a postgresql listen/notify workflow with caching to reduce repeated queries",
-        "created an operator dashboard for reviewing alert history and monitoring device status from a single interface"
+        "Engineered a microservice for IoT devices that processes and updates alert states as new events enter PostgreSQL",
+        "Implemented a PostgreSQL listen/notify workflow with caching to reduce repeated queries",
+        "Created an operator dashboard for reviewing alert history and monitoring device status from a single interface"
       ],
-      "tech": "next.js, golang, postgresql, mongodb, docker, hetzner cloud"
+      "tech": "Next.js, Golang, PostgreSQL, MongoDB, Docker, Hetzner Cloud"
     }
   ],
   "projects": [
     {
-      "name": "sibyl - daily morality quiz",
+      "name": "Sibyl - Daily Morality Quiz",
       "url": "https://sibyl.it.com",
       "achievements": [
-        "developed a daily quiz platform with smooth response tracking and user comparison features",
-        "added ai-driven insight generation to highlight behavioral patterns",
-        "implemented the full frontend, backend, and reactive data flow"
+        "Developed a daily quiz platform with smooth response tracking and user comparison features",
+        "Added AI-driven insight generation to highlight behavioral patterns",
+        "Implemented the full frontend, backend, and reactive data flow"
       ],
-      "tech": "react, typescript, convex, tanstack query, orpc"
+      "tech": "React, TypeScript, Convex, TanStack Query, oRPC"
     },
     {
-        "name": "ai vtuber content creator",
+        "name": "AI VTuber Content Creator",
         "url": "https://youtu.be/zuwlena5c_4",
         "achievements": [
-            "processed video frames and whisperx transcripts to extract context and timing",
-            "generated llm-driven character reactions with synthesized speech synced to a live2d model",
-            "automated final video production by overlaying the character, audio, and subtitles onto the source footage"
+            "Processed video frames and WhisperX transcripts to extract context and timing",
+            "Generated LLM-driven character reactions with synthesized speech synced to a Live2D model",
+            "Automated final video production by overlaying the character, audio, and subtitles onto the source footage"
           ],
-        "tech": "react, python, c++, live2d cubism sdk, whisperx, openai api"
+        "tech": "React, Python, C++, Live2D Cubism SDK, WhisperX, OpenAI API"
     }
   ],
   "education": [
     {
-      "school": "coding temple - software engineering",
+      "school": "Coding Temple - Software Engineering",
       "degree": "",
       "url": "https://www.credly.com/badges/2cb16330-a5d6-41b4-8cda-a1e177287f35/public_url",
-      "date": "april 2023"
+      "date": "April 2023"
     }
   ]
 }
