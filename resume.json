@@ -18,7 +18,7 @@
       "url": "https://github.com/lukestogsdill"
     }
   },
-  "summary": "2+ Full Stack Developer focused on high-performance web apps and practical backend systems. Experienced taking rough concepts to functioning products with clean UX, fast load times, and maintainable architecture.",
+  "summary": "Full Stack Developer with 2+ years of experience building high-performance web apps and practical backend systems. Strong focus on clean architecture, fast load times, and turning rough concepts into polished, production-quality products.",
   "skills": [
     {
       "category": "Frontend",
@@ -44,10 +44,18 @@
       "url": "https://lobby.media",
       "dates": "June 2024 - Current",
       "achievements": [
-        "Delivered lightweight, SEO-optimized static sites achieving perfect PageSpeed scores",
-        "Upgraded client sites with faster load times, modern UI, and cleaner information flow",
-        "Implemented CMS editing so clients can manage content without developer involvement",
-        "Shipped production websites and polished demos across medical, service, and event niches"
+        {
+          "text": "Delivered lightweight, SEO-optimized static sites achieving perfect PageSpeed scores"
+        },
+        {
+          "text": "Improved client sites with faster load times, modern UI, and clearer information flow"
+        },
+        {
+          "text": "Implemented CMS editing so clients can manage content without developer involvement"
+        },
+        {
+          "text": "Shipped production websites and polished demos across medical, service, and event niches"
+        }
       ],
       "tech": "Svelte5, Next.js, TypeScript, SveltiaCS, Cloudflare"
     },
@@ -57,9 +65,17 @@
       "url": "",
       "dates": "December 2023 - June 2024",
       "achievements": [
-        "Engineered a microservice for IoT devices that processes and updates alert states as new events enter PostgreSQL",
-        "Implemented a PostgreSQL listen/notify workflow with caching to reduce repeated queries",
-        "Created an operator dashboard for reviewing alert history and monitoring device status from a single interface"
+        {
+          "text": "Engineered a microservice for IoT devices that processed and updated alert states as new events entered PostgreSQL",
+          "overflow": true
+        },
+        {
+          "text": "Implemented a PostgreSQL listen/notify workflow with caching to reduce repeated queries and improve responsiveness",
+          "overflow": true
+        },
+        {
+          "text": "Built an operator dashboard to review alert history and monitor device status from a unified interface"
+        }
       ],
       "tech": "Next.js, Golang, PostgreSQL, MongoDB, Docker, Hetzner Cloud"
     }
@@ -69,21 +85,33 @@
       "name": "Sibyl - Daily Morality Quiz",
       "url": "https://sibyl.it.com",
       "achievements": [
-        "Developed a daily quiz platform with smooth response tracking and user comparison features",
-        "Added AI-driven insight generation to highlight behavioral patterns",
-        "Implemented the full frontend, backend, and reactive data flow"
+        {
+          "text": "Developed a daily quiz platform with smooth response tracking and user comparison features"
+        },
+        {
+          "text": "Added AI-driven insight generation to highlight behavioral patterns"
+        },
+        {
+          "text": "Implemented the full frontend, backend, and reactive data flow"
+        }
       ],
       "tech": "React, TypeScript, Convex, TanStack Query, oRPC"
     },
     {
-        "name": "AI VTuber Content Creator",
-        "url": "https://youtu.be/zuwlena5c_4",
-        "achievements": [
-            "Processed video frames and WhisperX transcripts to extract context and timing",
-            "Generated LLM-driven character reactions with synthesized speech synced to a Live2D model",
-            "Automated final video production by overlaying the character, audio, and subtitles onto the source footage"
-          ],
-        "tech": "React, Python, C++, Live2D Cubism SDK, WhisperX, OpenAI API"
+      "name": "AI VTuber Content Creator",
+      "url": "https://youtu.be/zuwlena5c_4",
+      "achievements": [
+        {
+          "text": "Architected an automated pipeline that parses video frames and WhisperX transcripts to extract context and timing"
+        },
+        {
+          "text": "Generated LLM-driven character reactions with synthesized speech aligned to motion data from a Live2D model"
+        },
+        {
+          "text": "Automated final production by compositing the character, synced audio, and subtitles onto the original footage"
+        }
+      ],
+      "tech": "React, Python, C++, Live2D Cubism SDK, WhisperX, OpenAI API"
     }
   ],
   "education": [
@@ -95,4 +123,3 @@
     }
   ]
 }
-

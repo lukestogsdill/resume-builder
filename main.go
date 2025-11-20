@@ -24,6 +24,11 @@ type Link struct {
 	URL  string `json:"url"`
 }
 
+type Achievement struct {
+	Text     string `json:"text"`
+	Overflow bool   `json:"overflow,omitempty"`
+}
+
 type Contact struct {
 	Location string `json:"location"`
 	Phone    string `json:"phone"`
@@ -39,19 +44,19 @@ type Skill struct {
 }
 
 type Experience struct {
-	Company      string   `json:"company"`
-	Title        string   `json:"title"`
-	URL          string   `json:"url"`
-	Dates        string   `json:"dates"`
-	Achievements []string `json:"achievements"`
-	Tech         string   `json:"tech"`
+	Company      string        `json:"company"`
+	Title        string        `json:"title"`
+	URL          string        `json:"url"`
+	Dates        string        `json:"dates"`
+	Achievements []Achievement `json:"achievements"`
+	Tech         string        `json:"tech"`
 }
 
 type Project struct {
-	Name         string   `json:"name"`
-	URL          string   `json:"url"`
-	Achievements []string `json:"achievements"`
-	Tech         string   `json:"tech"`
+	Name         string        `json:"name"`
+	URL          string        `json:"url"`
+	Achievements []Achievement `json:"achievements"`
+	Tech         string        `json:"tech"`
 }
 
 type Education struct {
@@ -306,12 +311,10 @@ func getMaroto(resume *Resume) core.Maroto {
 		}),
 	)
 
-	// Work Experience underline
+	// underline
 	mrt.AddRow(.25, col.New(1)).WithStyle(&props.Cell{BackgroundColor: getPrimaryColor()})
 
-	// Add each job dynamically
 	for _, exp := range resume.Experience {
-		// Job title and dates
 		jobTitle := exp.Title + " - " + exp.Company
 		if exp.URL != "" {
 			mrt.AddRow(8,
@@ -343,14 +346,18 @@ func getMaroto(resume *Resume) core.Maroto {
 
 		// Achievements
 		for _, achievement := range exp.Achievements {
-			mrt.AddRows(text.NewRow(6, "• "+achievement, props.Text{
+			rowHeight := 5
+			if achievement.Overflow {
+				rowHeight = 7
+			}
+			mrt.AddRows(text.NewRow(float64(rowHeight), "• "+achievement.Text, props.Text{
 				Size:  9,
 				Align: align.Left,
 			}))
 		}
 
 		// Tech stack
-		mrt.AddRows(text.NewRow(6, "Tech: "+exp.Tech, props.Text{
+		mrt.AddRows(text.NewRow(5, "Tech: "+exp.Tech, props.Text{
 			Size:  9,
 			Align: align.Left,
 			Style: fontstyle.Italic,
@@ -402,14 +409,18 @@ func getMaroto(resume *Resume) core.Maroto {
 
 		// Achievements
 		for _, achievement := range proj.Achievements {
-			mrt.AddRows(text.NewRow(6, "• "+achievement, props.Text{
+			rowHeight := 6
+			if achievement.Overflow {
+				rowHeight = 8
+			}
+			mrt.AddRows(text.NewRow(float64(rowHeight), "• "+achievement.Text, props.Text{
 				Size:  9,
 				Align: align.Left,
 			}))
 		}
 
 		// Tech stack
-		mrt.AddRows(text.NewRow(6, "Tech: "+proj.Tech, props.Text{
+		mrt.AddRows(text.NewRow(5, "Tech: "+proj.Tech, props.Text{
 			Size:  9,
 			Align: align.Left,
 			Style: fontstyle.Italic,
