@@ -41,6 +41,7 @@ type Contact struct {
 type Skill struct {
 	Category string `json:"category"`
 	Items    string `json:"items"`
+	Overflow bool   `json:"overflow,omitempty"`
 }
 
 type Experience struct {
@@ -281,7 +282,11 @@ func getMaroto(resume *Resume) core.Maroto {
 
 	// Add each skill category dynamically
 	for _, skill := range resume.Skills {
-		mrt.AddRow(5,
+		skillRowHeight := 6
+		if skill.Overflow {
+			skillRowHeight = 8
+		}
+		mrt.AddRow(float64(skillRowHeight),
 			text.NewCol(3, skill.Category + ":", props.Text{
 				Size:  10,
 				Style: fontstyle.Bold,
